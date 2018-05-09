@@ -2,15 +2,17 @@
 **Trabalho de Implementação 1 para INE5425@UFSC**
 
 ## Requisitos Funcionais
-- Implementar o automato celular para simulação de epidemias segundo o artigo (G. MELOTTI, 2009)
-- Mostrar estatísticas ao final da execução
-- ...
+1. Implementar o autômato celular para simulação de epidemias segundo a dissertação (G. MELOTTI, 2009). O projeto deve apresentar resultados similares aos apresentados na dissertação.
+2. Mostrar estatísticas ao final da execução
+    - Tempo de simulação
+    - Série temporal com o número de células por tipo (infectado, suscetível, recuperado) a cada instânte da simulação
+3. Configurar o tamanho da área simulada (número de indivíduos) através da interface gráfica.
+4. Configurar os parâmetros do autômato através da interface gráfica (probabilidades, infecciosidade da doença, proporção de infectados iniciais)
 
 ## Requisitos Não-Funcionais
-- Utilizar Qt para implementar interface gráfica
-- Implementar o simulador específico utilizando Python 
-- Implementar a lógica fuzzy com scikit-fuzzy
-- ...
+1. Utilizar Qt para implementar interface gráfica
+2. Implementar o simulador específico utilizando Python 
+3. Implementar a lógica fuzzy com scikit-fuzzy
 
 ---
 ## Bibliografia:
