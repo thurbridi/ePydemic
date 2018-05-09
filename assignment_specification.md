@@ -1,5 +1,5 @@
-# ePydemic - Especificação do trabalho
-Trabalho de Implementação 1 para INE5425@UFSC
+# ePydemic - Especificação do Projeto
+**Trabalho de Implementação 1 para INE5425@UFSC**
 
 ## Requisitos Funcionais
 - Implementar o automato celular para simulação de epidemias segundo o artigo (G. MELOTTI, 2009)
@@ -9,6 +9,7 @@ Trabalho de Implementação 1 para INE5425@UFSC
 ## Requisitos Não-Funcionais
 - Utilizar Qt para implementar interface gráfica
 - Implementar o simulador específico utilizando Python 
+- Implementar a lógica fuzzy com scikit-fuzzy
 - ...
 
 ---

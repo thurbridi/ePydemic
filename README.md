@@ -1,5 +1,5 @@
 # ePydemic
-Assignment for INE5425@UFSC :brazil:
+**Assignment for INE5425@UFSC** :brazil:
 
 ePydemic implements a celullar automaton for epidemic disease simulation based on (G. MELOTTI, 2009) using Python and Qt.
 
