@@ -30,15 +30,11 @@ def test_count_neighbors():
     ca.lattice[3, 2] = 2
     ca.lattice[3, 3] = 1
 
-    i_count, s_count, r_count = ca.count_neighbors(1, 1)
+    i_count = ca.count_infected_neighbors(1, 1)
     assert i_count == 5
-    assert s_count == 3
-    assert r_count == 0
 
-    i_count, s_count, r_count = ca.count_neighbors(3, 3)
+    i_count = ca.count_infected_neighbors(3, 3)
     assert i_count == 3
-    assert s_count == 3
-    assert r_count == 2
 
 
 def test_stats():

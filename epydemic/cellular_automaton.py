@@ -24,13 +24,13 @@ class CellularAutomaton:
 
     # Step forward 1 time unit
     def step(self):
-        aux = Lattice(self.height, self.width)
+        aux_grid = np.empty((self.height, self.width), np.int8)
 
         for i in range(0, self.height):
             for j in range(0, self.width):
-                aux[i, j] = self.apply_ruleset(i, j)
+                aux_grid[i, j] = self.apply_ruleset(i, j)
 
-        self.lattice.grid = aux.grid[:, :]
+        self.lattice.grid = np.copy(aux_grid)
 
     # Return statistics from the current state
     def stats(self):
@@ -51,11 +51,11 @@ class CellularAutomaton:
 
     # Apply the ruleset on a cell and returns the result
     def apply_ruleset(self, i, j):
-        i_count, s_count, r_count = self.count_neighbors(i, j)
+        i_count = self.count_infected_neighbors(i, j)
         outcome = self.lattice[i, j]
 
         # Local infection
-        Pi = (self.beta * i_count) / 8
+        Pi = (self.beta * i_count) / 8.0
         Prand_s = np.random.rand()
         if self.lattice[i, j] == SUSCEPTIBLE and Prand_s <= Pi:
             outcome = INFECTED
@@ -79,23 +79,27 @@ class CellularAutomaton:
 
         return outcome
 
-    def count_neighbors(self, i, j):
+    def count_infected_neighbors(self, i, j):
         i_count = 0
-        s_count = 0
-        r_count = 0
 
-        for y in range(i-1, i+2):
-            for x in range(j-1, j+2):
-                if (x == j and y == i):
-                    continue
-                if self.lattice[x, y] == INFECTED:
-                    i_count += 1
-                if self.lattice[x, y] == SUSCEPTIBLE:
-                    s_count += 1
-                if self.lattice[x, y] == RECOVERED:
-                    r_count += 1
+        if self.lattice[i-1, j-1] == INFECTED:
+            i_count += 1
+        if self.lattice[i-1, j] == INFECTED:
+            i_count += 1
+        if self.lattice[i-1, j+1] == INFECTED:
+            i_count += 1
+        if self.lattice[i, j-1] == INFECTED:
+            i_count += 1
+        if self.lattice[i, j+1] == INFECTED:
+            i_count += 1
+        if self.lattice[i+1, j-1] == INFECTED:
+            i_count += 1
+        if self.lattice[i+1, j] == INFECTED:
+            i_count += 1
+        if self.lattice[i+1, j+1] == INFECTED:
+            i_count += 1
 
-        return i_count, s_count, r_count
+        return i_count
 
     # Creates inital lattice with random infected
     def init_lattice(self, height, width):
