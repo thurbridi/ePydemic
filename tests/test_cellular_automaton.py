@@ -1,5 +1,5 @@
 import pytest
-from ePydemic import CellularAutomaton
+from epydemic import CellularAutomaton
 
 xfail = pytest.xfail
 

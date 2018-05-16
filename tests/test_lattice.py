@@ -1,5 +1,5 @@
 import pytest
-from ePydemic import Lattice
+from epydemic import Lattice
 
 xfail = pytest.xfail
 
