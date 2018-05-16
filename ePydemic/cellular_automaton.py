@@ -2,21 +2,22 @@ from lattice import Lattice
 import numpy as np
 import math as m
 
-"""
-0: infected
-1: susceptible
-2: recovered
-"""
+cell_state = {
+    'infected':    0,
+    'susceptible': 1,
+    'recovered':   2
+}
+
 
 class Cellular_Automaton:
     def __init__(self, height=200, width=200):
         self.total_people = height * width
 
         self.p_cure = 0.6
-        self.p_death = 0.3
-        self.p_other = 0.1
-        self.infectiousness = 3.5
-        
+        self.p_death_disease = 0.3
+        self.p_death_other = 0.1
+        self.infectiousness = 3.5  # beta
+
         self.lattice = self.init_lattice(height, width)
 
     # Step forward 1 time unit
