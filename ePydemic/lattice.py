@@ -1,7 +1,7 @@
 import numpy as np
 
-
 np.set_printoptions(threshold=np.nan)
+
 
 class Lattice():
     def __init__(self, height=200, width=200):
@@ -11,7 +11,7 @@ class Lattice():
 
     def __getitem__(self, index):
         x, y = index
-        return self.grid[y % self.height, x % self.width]
+        return self.grid[x % self.width, y % self.height]
 
     def __setitem__(self, index, value):
         if (type(index) is (np.ndarray or list)):
@@ -24,4 +24,7 @@ class Lattice():
 
         else:
             x, y = index
-            self.grid[y % self.height, x % self.width] = value
+            self.grid[x % self.width, y % self.height] = value
+
+    def __str__(self):
+        return self.grid.__str__()
