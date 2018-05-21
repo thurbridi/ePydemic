@@ -3,3 +3,5 @@ ePydemic/__pycache__
 tests/__pycache__
 .coverage
 *.pyc
+.venv
+ePydemic.egg-info
