@@ -4,27 +4,22 @@
 
 ePydemic implements a celullar automaton for epidemic disease simulation based on (G. MELOTTI, 2009) using Python and Qt.
 
+## Usage
+
 ---
-
-# Setup
-
-```console
-ePydemic/
-$./build.sh
-```
-
-# Usage
 
 GUI version:
 
 ```console
-$epydemic
+/ePydemic
+$./run.sh epydemic
 ```
 
 CLI version using specific parameters to compare against (MELOTTI, 2009):
 
 ```console
-$epydemic-compare
+/ePydemic
+$./run.sh epydemic-compare
 ```
 
 ---
