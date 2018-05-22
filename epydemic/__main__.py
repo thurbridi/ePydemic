@@ -58,7 +58,7 @@ class MainWindow(QMainWindow):
             current_iteration += 1
 
         self.statusBar().showMessage(
-            f"STATUS: RUN COMPLETE | t={current_iteration}")
+            f"STATUS: RUN COMPLETE | t={current_iteration-1}")
         self.plot_stats(data_i, data_s, data_r, n_iterations, width * height)
 
     def plot_stats(self, data_i, data_s, data_r, n_iterations, n_individuals):

@@ -22,6 +22,33 @@ CLI version using specific parameters to compare against (MELOTTI, 2009):
 $./run.sh epydemic-compare
 ```
 
+## When things go wrong...
+
+---
+
+### **No such file or directory**
+
+If something goes wrong during the creation of the virtual environment, some files and dependencies might not get installed.
+
+```console
+$./run.sh epydemic
+./run.sh: line 12: .venv/bin/epydemic: No such file or directory
+```
+
+Make sure to delete **.venv/** before running the script again.
+
+### **No module named 'tkinter'**
+
+`ModuleNotFoundError: No module named 'tkinter'`
+
+This error is caused by an external dependency of _matplotlib_.
+
+On Debian/Ubuntu based systems:
+
+```console
+$sudo apt-get install python3-tk
+```
+
 ---
 
 ## Bibliography:
