@@ -8,6 +8,7 @@ from PyQt5 import uic
 import matplotlib.pyplot as plt
 from .cellular_automaton import CellularAutomaton
 import numpy as np
+import threading
 
 
 class MainWindow(QMainWindow):
@@ -15,9 +16,15 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         uic.loadUi('./epydemic/forms/ePydemic.ui', self)
 
-        self.button_simulate.clicked.connect(self.start_simulation)
+        self.button_simulate.clicked.connect(self.worker)
 
         self.show()
+
+    def worker(self):
+        thread = threading.Thread(target=self.start_simulation)
+        self.button_simulate.setEnabled(False)
+        thread.start()
+        self.button_simulate.setEnabled(True)
 
     def start_simulation(self):
         current_iteration = 0
@@ -63,6 +70,9 @@ class MainWindow(QMainWindow):
 
     def plot_stats(self, data_i, data_s, data_r, n_iterations, n_individuals):
         t = range(0, len(data_i))
+
+        plt.ticklabel_format(style='sci', scilimits=(0, 3), useMathText=True)
+        plt.title('Number of individuals')
         plt.plot(t, data_i, 'k--', label='Infected')
         plt.plot(t, data_r, 'k:', label='Recovered')
         plt.plot(t, data_s, 'k', label='Susceptible')
@@ -71,6 +81,7 @@ class MainWindow(QMainWindow):
         plt.xlabel('Time')
         plt.xlim(0, n_iterations)
         plt.ylim(0, n_individuals)
+
         plt.show()
 
 
