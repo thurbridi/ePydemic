@@ -21,10 +21,9 @@ class MainWindow(QMainWindow):
         self.show()
 
     def worker(self):
-        thread = threading.Thread(target=self.start_simulation)
+        thread = threading.Thread(target=self.start_simulation, daemon=True)
         self.button_simulate.setEnabled(False)
         thread.start()
-        self.button_simulate.setEnabled(True)
 
     def start_simulation(self):
         current_iteration = 0
@@ -67,6 +66,7 @@ class MainWindow(QMainWindow):
         self.statusBar().showMessage(
             f"STATUS: RUN COMPLETE | t={current_iteration-1}")
         self.plot_stats(data_i, data_s, data_r, n_iterations, width * height)
+        self.button_simulate.setEnabled(True)
 
     def plot_stats(self, data_i, data_s, data_r, n_iterations, n_individuals):
         t = range(0, len(data_i))
