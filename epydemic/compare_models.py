@@ -33,8 +33,6 @@ def main():
         ca.step()
         current_iteration += 1
 
-    plot_stats(data_i, data_s, data_r, n_iterations, width * height)
-
     csv_path = './epydemic/data/melotti_cenario1_sdelocamento.csv'
     with open(csv_path, newline='\n') as csvfile:
         matlab_data = csv.reader(csvfile)
@@ -51,11 +49,10 @@ def main():
     res_s = data_s - matlab_data_s
     res_r = data_r - matlab_data_r
 
-    plot_stats(res_i, res_s, res_r, n_iterations, width * height)
-
-
-def plot_stats(data_i, data_s, data_r, n_iterations, n_individuals):
-    t = range(0, len(data_i))
+    t = range(0, n_iterations+1)
+    plt.subplot(2, 1, 1)
+    plt.ticklabel_format(style='sci', scilimits=(0, 3), useMathText=True)
+    plt.title('Number of individuals')
     plt.plot(t, data_i, 'k--', label='Infected')
     plt.plot(t, data_r, 'k:', label='Recovered')
     plt.plot(t, data_s, 'k', label='Susceptible')
@@ -63,7 +60,22 @@ def plot_stats(data_i, data_s, data_r, n_iterations, n_individuals):
     plt.ylabel('Individuals')
     plt.xlabel('Time')
     plt.xlim(0, n_iterations)
-    plt.ylim(0, n_individuals)
+    plt.ylim(0, width * height)
+
+    plt.subplot(2, 1, 2)
+    plt.ticklabel_format(style='sci', scilimits=(0, 3), useMathText=True)
+    plt.title('Residual of (Melotti, 2009) with the same parameters')
+    plt.plot(t, res_i, 'k--', label='Infected')
+    plt.plot(t, res_r, 'k:', label='Recovered')
+    plt.plot(t, res_s, 'k', label='Susceptible')
+    plt.legend(loc='upper right')
+    plt.ylabel('Error in number of individuals')
+    plt.xlabel('Time')
+    plt.xlim(0, n_iterations)
+    plt.ylim(-1500, 1500)
+
+    plt.suptitle('Individuals time series')
+    plt.tight_layout()
     plt.show()
 
 
